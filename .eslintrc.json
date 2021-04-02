@@ -36,7 +36,11 @@
           {
             "allowTemplateLiterals": true
           }
-        ]
+        ],
+        // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/comma-dangle.md
+        // note you must disable the base rule as it can report incorrect errors
+        "comma-dangle": "off",
+        "@typescript-eslint/comma-dangle": ["error", "never"]
       }
     },
     {
