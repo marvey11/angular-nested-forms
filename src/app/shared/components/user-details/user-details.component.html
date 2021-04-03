@@ -1,1 +1,43 @@
-<p>user-details works!</p>
+<div class="card">
+  <h1 class="card-header">{{ heading }}</h1>
+  <div class="card-body">
+    <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <app-user-name class="col" [formControl]="userName"></app-user-name>
+      </div>
+      <div class="row">
+        <app-user-social class="col" [formControl]="userSocial"></app-user-social>
+      </div>
+      <div class="row">
+        <app-user-address class="col" [formControl]="userAddress"></app-user-address>
+      </div>
+      <div class="row my-3">
+        <div class="col-10 offset-2">
+          <button type="submit" class="btn btn-primary" [disabled]="!userDetailsForm.valid">Submit</button>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-10 offset-2">
+          <input
+            id="show-form-data-toggle"
+            class="form-check-input"
+            [formControl]="showFormDataToggle"
+            type="checkbox"
+          />
+          <label for="show-form-data-toggle" class="form-check-label mx-2">Show Form Data</label>
+        </div>
+      </div>
+      <div class="row mt-3 p-3" *ngIf="showFormDataToggle.value">
+        <div class="col-5 offset-2" style="border: dotted thin lightgrey">
+          <pre>{{ userDetailsForm.value | json }}</pre>
+        </div>
+        <div class="col-5" style="border: dotted thin lightgrey">
+          <pre>userName.valid: {{ userName.valid }}</pre>
+          <pre>userSocial.valid: {{ userSocial.valid }}</pre>
+          <pre>userAddress.valid: {{ userAddress.valid }}</pre>
+          <pre>userDetailsForm.valid: {{ userDetailsForm.valid }}</pre>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 
 @Component({
     selector: "app-user-details",
@@ -6,7 +7,30 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./user-details.component.css"]
 })
 export class UserDetailsComponent implements OnInit {
-    constructor() {}
+    @Input() heading!: string;
 
-    ngOnInit(): void {}
+    userDetailsForm!: FormGroup;
+
+    userName!: FormControl;
+    userSocial!: FormControl;
+    userAddress!: FormControl;
+    showFormDataToggle!: FormControl;
+
+    constructor(private fb: FormBuilder) {}
+
+    onSubmit() {}
+
+    ngOnInit(): void {
+        this.userName = new FormControl({ firstName: "", lastName: "" });
+        this.userSocial = new FormControl({ email: "", handle: "" });
+        this.userAddress = new FormControl({ street: "", zipCode: "", city: "" });
+
+        this.showFormDataToggle = new FormControl(false);
+
+        this.userDetailsForm = this.fb.group({
+            nameData: this.userName,
+            socialData: this.userSocial,
+            addressData: this.userAddress
+        });
+    }
 }
