@@ -1,0 +1,62 @@
+<form [formGroup]="form">
+  <div class="row mt-2 mb-3">
+    <label for="user-email" class="col-2 col-form-label">Email Address:</label>
+    <div class="col-10">
+      <input
+        id="user-email"
+        class="form-control"
+        [formControl]="userEmail"
+        type="email"
+        required
+        [ngClass]="{
+          'is-valid': userEmail.valid,
+          'is-invalid': userEmail.invalid && (userEmail.touched || userEmail.dirty)
+        }"
+      />
+      <div class="invalid-feedback">
+        <ng-template [ngIf]="userEmail.errors?.required" [ngIfElse]="otherEmailErrors">
+          <span>The Exchange Name is required.</span>
+        </ng-template>
+        <ng-template #otherEmailErrors>
+          <span *ngIf="userEmail.errors?.email"> Must be a valid email address. </span>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3 mb-2">
+    <label for="user-handle" class="col-2 col-form-label">User Handle:</label>
+    <div class="col-10">
+      <div class="input-group">
+        <span class="input-group-text">@</span>
+        <input
+          id="user-handle"
+          class="form-control"
+          [formControl]="userHandle"
+          type="text"
+          minlength="4"
+          required
+          [ngClass]="{
+            'is-valid': userHandle.valid,
+            'is-invalid': userHandle.invalid && (userHandle.touched || userHandle.dirty)
+          }"
+        />
+        <!--
+          IMPORTANT:
+          the div for the invalid feedback must apparently be located right after the element in question;
+          moving the div outside of the input-group div will not display the feedback text
+        -->
+        <div class="invalid-feedback">
+          <ng-template [ngIf]="userHandle.errors?.required" [ngIfElse]="otherHandleErrors">
+            <span>The User Handle is required.</span>
+          </ng-template>
+          <ng-template #otherHandleErrors>
+            <span *ngIf="userHandle.errors?.minlength">
+              The User Handle must be at least {{ userHandle.errors?.minlength.requiredLength }} characters long.
+            </span>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
