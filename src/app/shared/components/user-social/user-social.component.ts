@@ -44,8 +44,9 @@ export class UserSocialComponent implements ControlValueAccessor, OnInit {
     }
 
     ngOnInit(): void {
-        this.userEmail = new FormControl("", [Validators.email, Validators.required]);
-        this.userHandle = new FormControl("", [Validators.minLength(4), Validators.required]);
+        this.userEmail = new FormControl("", { validators: [Validators.email, Validators.required] });
+        this.userHandle = new FormControl("", { validators: [Validators.minLength(4), Validators.required] });
+
         this.form = this.fb.group({
             email: this.userEmail,
             handle: this.userHandle

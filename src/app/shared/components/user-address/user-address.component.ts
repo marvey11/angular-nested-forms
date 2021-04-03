@@ -43,9 +43,9 @@ export class UserAddressComponent implements ControlValueAccessor, OnInit {
     constructor(private fb: FormBuilder) {}
 
     ngOnInit(): void {
-        this.userStreet = new FormControl("", [Validators.required]);
-        this.userZip = new FormControl("", [Validators.required]);
-        this.userCity = new FormControl("", [Validators.required]);
+        this.userStreet = new FormControl("", { validators: [Validators.required] });
+        this.userZip = new FormControl("", { validators: [Validators.required] });
+        this.userCity = new FormControl("", { validators: [Validators.required] });
 
         this.form = this.fb.group({
             street: this.userStreet,

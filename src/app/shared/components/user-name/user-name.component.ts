@@ -44,8 +44,11 @@ export class UserNameComponent implements ControlValueAccessor, OnInit {
     }
 
     ngOnInit(): void {
-        this.firstName = new FormControl("", [Validators.minLength(3), Validators.required]);
-        this.lastName = new FormControl("", [Validators.minLength(3), Validators.required]);
+        this.firstName = new FormControl("", {
+            validators: [Validators.minLength(3), Validators.required],
+            updateOn: "blur"
+        });
+        this.lastName = new FormControl("", { validators: [Validators.minLength(3), Validators.required] });
 
         this.form = this.fb.group({
             firstName: this.firstName,
