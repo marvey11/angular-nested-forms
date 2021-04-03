@@ -1,0 +1,63 @@
+<form [formGroup]="form">
+  <div class="row my-3">
+    <label for="user-street" class="col-2 col-form-label">Street:</label>
+    <div class="col-10">
+      <input
+        id="user-street"
+        class="form-control"
+        [formControl]="userStreet"
+        type="text"
+        required
+        [ngClass]="{
+          'is-valid': userStreet.valid,
+          'is-invalid': userStreet.invalid && (userStreet.touched || userStreet.dirty)
+        }"
+      />
+      <div class="invalid-feedback">
+        <ng-template [ngIf]="userStreet.errors?.required">
+          <span>Street is a required field.</span>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="row my-3">
+    <label for="user-zip-code" class="col-2 col-form-label">Zip Code:</label>
+    <div class="col-2">
+      <input
+        id="user-zip-code"
+        class="form-control"
+        [formControl]="userZip"
+        type="text"
+        required
+        [ngClass]="{
+          'is-valid': userZip.valid,
+          'is-invalid': userZip.invalid && (userZip.touched || userZip.dirty)
+        }"
+      />
+      <div class="invalid-feedback">
+        <ng-template [ngIf]="userZip.errors?.required">
+          <span>Zip Code is a required field.</span>
+        </ng-template>
+      </div>
+    </div>
+    <label for="user-city" class="col-1 col-form-label">City:</label>
+    <div class="col-7">
+      <input
+        id="user-city"
+        class="form-control"
+        [formControl]="userCity"
+        type="text"
+        required
+        [ngClass]="{
+          'is-valid': userCity.valid,
+          'is-invalid': userCity.invalid && (userCity.touched || userCity.dirty)
+        }"
+      />
+      <div class="invalid-feedback">
+        <ng-template [ngIf]="userCity.errors?.required">
+          <span>City is a required field.</span>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</form>

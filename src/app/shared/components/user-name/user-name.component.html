@@ -1,0 +1,57 @@
+<form [formGroup]="form">
+  <div class="row my-3">
+    <label for="user-first-name" class="col-2 col-form-label">First Name:</label>
+    <div class="col-10">
+      <input
+        id="user-first-name"
+        class="form-control"
+        [formControl]="firstName"
+        type="text"
+        minlength="3"
+        required
+        [ngClass]="{
+          'is-valid': firstName.valid,
+          'is-invalid': firstName.invalid && (firstName.touched || firstName.dirty)
+        }"
+      />
+      <div class="invalid-feedback">
+        <ng-template [ngIf]="firstName.errors?.required" [ngIfElse]="otherFirstNameErrors">
+          <span>First Name is a required field.</span>
+        </ng-template>
+        <ng-template #otherFirstNameErrors>
+          <span *ngIf="firstName.errors?.minlength">
+            The First Name must be at least {{ firstName.errors?.minlength.requiredLength }} characters long.
+          </span>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <label for="user-last-name" class="col-2 col-form-label">Last Name:</label>
+    <div class="col-10">
+      <input
+        id="user-last-name"
+        class="form-control"
+        [formControl]="lastName"
+        type="text"
+        minlength="3"
+        required
+        [ngClass]="{
+          'is-valid': lastName.valid,
+          'is-invalid': lastName.invalid && (lastName.touched || lastName.dirty)
+        }"
+      />
+      <div class="invalid-feedback">
+        <ng-template [ngIf]="lastName.errors?.required" [ngIfElse]="otherLastNameErrors">
+          <span>Last Name is a required field.</span>
+        </ng-template>
+        <ng-template #otherLastNameErrors>
+          <span *ngIf="lastName.errors?.minlength">
+            The Last Name must be at least {{ lastName.errors?.minlength.requiredLength }} characters long.
+          </span>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</form>
